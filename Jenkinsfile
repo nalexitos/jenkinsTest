@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'make --version' 
-                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true 
+                archiveArtifacts artifacts: './*.log', fingerprint: true 
             }
         }
         stage('Test') {

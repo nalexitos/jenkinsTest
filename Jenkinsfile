@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'ubuntu2o' }
 
     stages {
         stage('Build') {

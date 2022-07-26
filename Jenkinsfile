@@ -11,12 +11,17 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                junit '*.xml'
+                sh 'test -e ./unitt.xml && echo file exists || echo file not found'
             }
         }
         stage('Deploy') {
+            when {
+              expression {
+                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
+              }
+            }
             steps {
-                echo 'Deploying....'
+                sh 'make publish'
             }
         }
     }
